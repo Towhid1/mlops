@@ -1,31 +1,47 @@
-# Important commands and others
+# Week #1
 
-### Airflow running
-
-1. Init Airflow:
+### Environment setup
+1. Install pyenv (youtube e tutorial paben)
+2. Install python 3.8.6 using pyenv
+3. Install vscode
+4. Install following extentions in vscode:
     ```sh
-     docker-compose up airflow-init
-     ```
-2. Start Airflow services
-    ```sh
-     docker-compose up
-     ```
-     if you don't want to display any output from docker compose execution/running then run this command:
-    ```sh
-     docker-compose up -d
-     ```
-3. Access Airflow UI : http://localhost:8080/
-4. Default **password and username** : `airflow`
-5. You can even enter the worker container so that you can run airflow commands using the following command. You can find `<container-id>` for the Airflow worker service by running `docker ps`.
-   ```sh
-   docker exec -it <container-id> bash
-   ```
-6. Once you are done with your experimentation, you can clean up the mess we’ve just created by simply running
-    ```sh
-    docker-compose down --volumes --rmi all
+    chrmarti.regex
+    donjayamanne.githistory
+    dzhavat.bracket-pair-toggler
+    eamodio.gitlens
+    GrapeCity.gc-excelviewer
+    humao.rest-client
+    ionutvmi.path-autocomplete
+    iterative.dvc
+    mechatroner.rainbow-csv
+    ms-azuretools.vscode-docker
+    ms-python.autopep8
+    ms-python.flake8
+    ms-python.isort
+    ms-python.pylint
+    ms-python.python
+    ms-python.vscode-pylance
+    ms-toolsai.jupyter
+    ms-toolsai.jupyter-keymap
+    ms-toolsai.jupyter-renderers
+    ms-toolsai.vscode-jupyter-cell-tags
+    ms-toolsai.vscode-jupyter-slideshow
+    ms-vscode-remote.remote-containers
+    ms-vscode-remote.remote-ssh
+    ms-vscode-remote.remote-ssh-edit
+    ms-vscode.remote-explorer
+    njpwerner.autodocstring
+    PKief.material-icon-theme
+    Shan.code-settings-sync
+    shardulm94.trailing-spaces
+    shd101wyy.markdown-preview-enhanced
+    VisualStudioExptTeam.intellicode-api-usage-examples
+    VisualStudioExptTeam.vscodeintellicode
+    wayou.vscode-todo-highlight
+    yzhang.markdown-all-in-one
     ```
-
-
+5. Create virtual environment (kivabe korben niche dewa ase)
 
 ### Creation of virtual environments
 
@@ -45,14 +61,3 @@
     ```
     C:\Users\path\mlops_env\Scripts\activate
     ```
-
-### Runing MLFlow using docker (without Airflow)
-1. To build the Docker image, navigate to the directory containing the Dockerfile and run the following command:
-    ```sh
-    docker build -t mlflow-server -f Docker-mlflow .
-    ```
-2. Once the image is built, you can run the MLflow server using the following command:
-   ```sh
-   docker run -p 5000:5000 -v mlflow:/mlflow mlflow-server
-
-   ```

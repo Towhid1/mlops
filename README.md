@@ -1,4 +1,6 @@
-# Week #1
+# 💁 Week #1
+
+<!-- 💁👌🎍😍 -->
 
 ### Environment setup
 1. Install pyenv (youtube e tutorial paben)
@@ -44,7 +46,7 @@
 5. Create virtual environment (kivabe korben niche dewa ase)
 
 
-### pyenv cheat-sheet
+### 🐍 pyenv cheat-sheet
 Here's a cheat sheet of some commonly used commands with pyenv:
 
 - To list all the available Python versions that can be installed with pyenv:
@@ -104,7 +106,7 @@ Here's a cheat sheet of some commonly used commands with pyenv:
     ```sh
     pyenv exec <version> <command>
     ```
-### Creation of virtual environments
+### 🌱 Creation of virtual environments
 
 1. Install and create virtual environment:
     ```sh

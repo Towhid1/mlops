@@ -2,7 +2,7 @@
 
 ### Environment setup
 1. Install pyenv (youtube e tutorial paben)
-2. Install python 3.8.6 using pyenv
+2. Install python 3.8.6 using pyenv (Pyevn cheat sheet added below)
 3. Install vscode
 4. Install following extentions in vscode:
     ```sh
@@ -43,6 +43,67 @@
     ```
 5. Create virtual environment (kivabe korben niche dewa ase)
 
+
+### pyenv cheat-sheet
+Here's a cheat sheet of some commonly used commands with pyenv:
+
+- To list all the available Python versions that can be installed with pyenv:
+
+    ```sh
+    pyenv install --list
+    ```
+- pyenv install: Install a specific Python version.
+
+
+    ```sh
+    pyenv install <version>
+    ```
+- pyenv versions: List all installed Python versions.
+
+    ```sh
+    pyenv versions
+    ```
+- pyenv global: Set the global Python version to be used.
+
+
+    ```sh
+    pyenv global <version>
+    ```
+- pyenv local: Set a Python version for the current directory.
+
+
+    ```sh
+    pyenv local <version>
+    ```
+- pyenv shell: Set a Python version for the current shell session.
+
+
+    ```sh
+    pyenv shell <version>
+    ```
+
+- pyenv uninstall: Uninstall a specific Python version.
+
+
+    ```sh
+    pyenv uninstall <version>
+    ```
+- pyenv rehash: Rehash the installed executables.
+
+
+    ```sh
+    pyenv rehash
+    ```
+- pyenv which: Display the full path to the executable of a Python version.
+
+    ```sh
+    pyenv which <version>
+    ```
+- pyenv exec: Run a command using a specified Python version.
+
+    ```sh
+    pyenv exec <version> <command>
+    ```
 ### Creation of virtual environments
 
 1. Install and create virtual environment:
@@ -61,3 +122,4 @@
     ```
     C:\Users\path\mlops_env\Scripts\activate
     ```
+

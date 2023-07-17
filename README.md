@@ -3,7 +3,8 @@
 <!-- 💁👌🎍😍 -->
 
 ### Environment setup
-1. Install pyenv (youtube e tutorial paben)
+1. Install pyenv 
+
 2. Install python 3.8.6 using pyenv (Pyevn cheat sheet added below)
 3. Install vscode
 4. Install following extentions in vscode:
@@ -47,6 +48,34 @@
 
 
 ### 🐍 pyenv cheat-sheet
+####Installation of pyenv
+#####Windows
+Here, a github link is provided for installing pyenv easily with all provided instructions for windows only.
+
+https://github.com/pyenv-win/pyenv-win#power-shell
+- go to pyenv-win commands of the given github link
+- go to the powershell option for installation
+- copy the 1st code link in the powershell
+- open the windows powershell in the laptop and paste/run the code.
+- if it shows UnauthorizedAccess error, copy and run the following code-
+  ```sh
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+  ```
+- then re-run the previous powershell link code.
+- scroll below in the screen to find add system settings
+- copy and run the 1st and 2nd link code of add system settings separately.
+- And the installation is done!!
+  Besides powershell, There are some other options available in this link for installing pyenv in windows.
+#####Obuntu & Linux Mint
+Here, Follow the given link to install pyenv in obuntu.
+https://github.com/zaemiel/ubuntu-pyenv-installer
+- Only for obuntu users, install curl using the following code. For Linux Mint users, this step doesn't require.
+    ```sh
+  sudo apt install curl
+  ```
+- Copy and run the code link below install pyenv headings and choose 3rd options.
+
+####some common command 
 Here's a cheat sheet of some commonly used commands with pyenv:
 
 - To list all the available Python versions that can be installed with pyenv:
@@ -124,4 +153,12 @@ Here's a cheat sheet of some commonly used commands with pyenv:
     ```
     C:\Users\path\mlops_env\Scripts\activate
     ```
-
+###Requirements.txt 
+- To list down the all the required libraries for running the code, the following code is required to run in the terminal
+    ```sh 
+    pip freeze > requriements.txt
+    ```
+- To install the all the libraries in the requirements.txt file in one go, the following code is needed to run in the terminal of vscode.
+    ```sh 
+    pip install -r requriements.txt
+    ```

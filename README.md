@@ -3,7 +3,7 @@
 <!-- 💁👌🎍😍 -->
 
 ### Environment setup
-1. Install pyenv (youtube e tutorial paben)
+1. Install pyenv (kivabe korben niche dewa ase)
 2. Install python 3.8.6 using pyenv (Pyevn cheat sheet added below)
 3. Install vscode
 4. Install following extentions in vscode:
@@ -47,6 +47,28 @@
 
 
 ### 🐍 pyenv cheat-sheet
+#### Installation of pyenv
+##### Windows
+
+
+- Open windows powershell and run this command:
+    ```pwsh
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
+    ```
+
+- If you are getting any **UnauthorizedAccess** error as below then start Windows PowerShell with the **Run as administrator** option and run -
+    ```pwsh
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+    ```
+- Then re-run the previous powershell link code.
+- For more details visit this [link](https://github.com/pyenv-win/pyenv-win/blob/master/docs/installation.md#powershell).
+##### Linux
+- If you wish to install a specific release of Pyenv rather than the latest head, set the PYENV_GIT_TAG environment variable (e.g. export `PYENV_GIT_TAG=v2.2.5`).
+    ```sh
+    curl https://pyenv.run | bash
+    ```
+- For more details visit this [link](https://github.com/pyenv/pyenv-installer).
+#### some common command 
 Here's a cheat sheet of some commonly used commands with pyenv:
 
 - To list all the available Python versions that can be installed with pyenv:
@@ -124,4 +146,12 @@ Here's a cheat sheet of some commonly used commands with pyenv:
     ```
     C:\Users\path\mlops_env\Scripts\activate
     ```
-
+###Requirements.txt 
+- To list down the all the required libraries for running the code, the following code is required to run in the terminal
+    ```sh 
+    pip freeze > requriements.txt
+    ```
+- To install the all the libraries in the requirements.txt file in one go, the following code is needed to run in the terminal of vscode.
+    ```sh 
+    pip install -r requriements.txt
+    ```

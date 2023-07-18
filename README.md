@@ -3,8 +3,7 @@
 <!-- 💁👌🎍😍 -->
 
 ### Environment setup
-1. Install pyenv 
-
+1. Install pyenv (kivabe korben niche dewa ase)
 2. Install python 3.8.6 using pyenv (Pyevn cheat sheet added below)
 3. Install vscode
 4. Install following extentions in vscode:

@@ -49,8 +49,8 @@
 
 ### 🐍 pyenv cheat-sheet
 ####Installation of pyenv
-#####Windows
-Here, a github link is provided for installing pyenv easily with all provided instructions for windows only.
+#####Windows 
+Here, a github link is provided for installing pyenv easily with all provided instructions for windows users only.
 
 https://github.com/pyenv-win/pyenv-win#power-shell
 - go to pyenv-win commands of the given github link

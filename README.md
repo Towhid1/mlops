@@ -48,34 +48,28 @@
 
 
 ### 🐍 pyenv cheat-sheet
-####Installation of pyenv
-#####Windows 
-Here, a github link is provided for installing pyenv easily with all provided instructions for windows users only.
+#### Installation of pyenv
+##### Windows
 
-https://github.com/pyenv-win/pyenv-win#power-shell
-- go to pyenv-win commands of the given github link
-- go to the powershell option for installation
-- copy the 1st code link in the powershell
-- open the windows powershell in the laptop and paste/run the code.
-- if it shows UnauthorizedAccess error, copy and run the following code-
-  ```sh
-  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
-  ```
-- then re-run the previous powershell link code.
-- scroll below in the screen to find add system settings
-- copy and run the 1st and 2nd link code of add system settings separately.
-- And the installation is done!!
-  Besides powershell, There are some other options available in this link for installing pyenv in windows.
-#####Obuntu & Linux Mint
-Here, Follow the given link to install pyenv in obuntu.
-https://github.com/zaemiel/ubuntu-pyenv-installer
-- Only for obuntu users, install curl using the following code. For Linux Mint users, this step doesn't require.
+
+- Open windows powershell and run this command:
+    ```pwsh
+    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/pyenv-win/pyenv-win/master/pyenv-win/install-pyenv-win.ps1" -OutFile "./install-pyenv-win.ps1"; &"./install-pyenv-win.ps1"
+    ```
+
+- If you are getting any **UnauthorizedAccess** error as below then start Windows PowerShell with the **Run as administrator** option and run -
+    ```pwsh
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+    ```
+- Then re-run the previous powershell link code.
+- For more details visit this [link](https://github.com/pyenv-win/pyenv-win/blob/master/docs/installation.md#powershell).
+##### Linux
+- If you wish to install a specific release of Pyenv rather than the latest head, set the PYENV_GIT_TAG environment variable (e.g. export `PYENV_GIT_TAG=v2.2.5`).
     ```sh
-  sudo apt install curl
-  ```
-- Copy and run the code link below install pyenv headings and choose 3rd options.
-
-####some common command 
+    curl https://pyenv.run | bash
+    ```
+- For more details visit this [link](https://github.com/pyenv/pyenv-installer).
+#### some common command 
 Here's a cheat sheet of some commonly used commands with pyenv:
 
 - To list all the available Python versions that can be installed with pyenv:

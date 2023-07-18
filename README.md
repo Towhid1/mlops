@@ -44,6 +44,10 @@
     yzhang.markdown-all-in-one
     ```
 5. Create virtual environment (kivabe korben niche dewa ase)
+6. Install all python required libs-
+   ```sh 
+    pip install -r requriements.txt
+    ```
 
 
 ### 🐍 pyenv cheat-sheet
@@ -145,13 +149,4 @@ Here's a cheat sheet of some commonly used commands with pyenv:
     Windows:
     ```
     C:\Users\path\mlops_env\Scripts\activate
-    ```
-###Requirements.txt 
-- To list down the all the required libraries for running the code, the following code is required to run in the terminal
-    ```sh 
-    pip freeze > requriements.txt
-    ```
-- To install the all the libraries in the requirements.txt file in one go, the following code is needed to run in the terminal of vscode.
-    ```sh 
-    pip install -r requriements.txt
     ```

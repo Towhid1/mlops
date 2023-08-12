@@ -150,3 +150,25 @@ Here's a cheat sheet of some commonly used commands with pyenv:
     ```
     C:\Users\path\mlops_env\Scripts\activate
     ```
+# 💁 Week 2-3
+> All about EDA
+
+# 💁 Week 4
+
+### Install & Run Apache Airflow with Docker 👌
+
+1. Install [Docker](https://docs.docker.com/desktop/install/windows-install/).
+2. Download apache airflow YAML file [Link](https://airflow.apache.org/docs/apache-airflow/2.6.3/docker-compose.yaml)
+3. update yaml file and add dockerfile (provided updated files in repo)
+4. Init Airflow:
+    ```sh
+     docker-compose up airflow-init
+     ```
+5. Start Airflow services
+    ```sh
+     docker-compose up
+     ```
+6. Stop Airflow
+```sh
+     docker-compose down
+```

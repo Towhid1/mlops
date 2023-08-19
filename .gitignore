@@ -163,3 +163,6 @@ mlruns
 
 # venv
 mlops_env/
+
+# logs
+logs/*

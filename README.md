@@ -151,7 +151,8 @@ Here's a cheat sheet of some commonly used commands with pyenv:
     C:\Users\path\mlops_env\Scripts\activate
     ```
 # 💁 Week 2-3
-> All about EDA
+
+> All about EDA. Check notebook folder.
 
 # 💁 Week 4
 
@@ -159,16 +160,43 @@ Here's a cheat sheet of some commonly used commands with pyenv:
 
 1. Install [Docker](https://docs.docker.com/desktop/install/windows-install/).
 2. Download apache airflow YAML file [Link](https://airflow.apache.org/docs/apache-airflow/2.6.3/docker-compose.yaml)
-3. update yaml file and add dockerfile (provided updated files in repo)
+3. Update yaml file and add dockerfile (provided updated files in repo)
 4. Init Airflow:
     ```sh
-     docker-compose up airflow-init
-     ```
+    docker-compose up airflow-init
+    ```
 5. Start Airflow services
     ```sh
-     docker-compose up
-     ```
+    docker-compose up
+    ```
 6. Stop Airflow
+    ```sh
+    docker-compose down
+    ```
+
+
+
+# 💁 Week 5
+
+## Important links 🔗
+1. For Cornjob stuff : https://crontab.guru/
+2. Scheduler Doc : https://airflow.apache.org/docs/apache-airflow/1.10.1/scheduler.html
+
+### Python code format fixing using Black
+1. install black
+    ```sh
+    pip install black
+    ```
+2. fix code format. black then code directory.
+   ```sh
+   black .\dags\airline_price.py
+   ```
+
+# Issues:
+1. airflow docker-compose up issue. Showing this error message:
+
 ```sh
-     docker-compose down
+File "/usr/local/lib/python3.9/logging/config.py", line 571, in configure mlops-airflow-webserver-1 | raise ValueError('Unable to configure handler ' mlops-airflow-webserver-1 | ValueError: Unable to configure handler 'processor'
 ```
+
+>Solution : create logs, dags, data, config, plugins folder manually.

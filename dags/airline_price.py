@@ -101,7 +101,7 @@ def data_pre(ti, path="/opt/airflow/data/raw_data/Clean_Dataset.csv"):
         pass
 
     data.iloc[cls_eco].to_csv("/opt/airflow/data/feature/eco_features.csv", index=False)
-    data.iloc[cls_bsn].to_csv("/opt/airflow/data/feature/bus_features.csv", index=False)
+    data.iloc[cls_bsn].to_csv("/opt/airflow/data/feature/bsn_features.csv", index=False)
 
     context_dict = {
         "business": "/opt/airflow/data/feature/bsn_features.csv",
@@ -169,7 +169,8 @@ def eco_training(ti):
 
 airline_dag = DAG(
     "Airline_ticket_price_prediction_DAG",
-    schedule_interval="@daily",
+    # schedule_interval="@daily",
+    schedule_interval=None,
     start_date=datetime(2023, 8, 18),
 )
 
@@ -186,4 +187,4 @@ with airline_dag:
         task_id="bsn_training_task", python_callable=bsn_training, provide_context=True
     )
 
-    data_preparation_task >> [bsn_training, eco_training]
+    data_preparation_task >> [bsn_training_task, eco_training_task]

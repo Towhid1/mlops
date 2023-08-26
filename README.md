@@ -200,3 +200,25 @@ File "/usr/local/lib/python3.9/logging/config.py", line 571, in configure mlops-
 ```
 
 >Solution : create logs, dags, data, config, plugins folder manually.
+
+# 💁 Week 6
+
+## To get your access key ID and secret access key
+
+1. Open the IAM console at https://console.aws.amazon.com/iam/.
+2. On the navigation menu, choose Users.
+3. Choose your IAM user name (not the check box).
+4. Open the Security credentials tab, and then choose Create access key.
+5. To see the new access key, choose Show. Your credentials resemble the following:
+    ```
+    Access key ID: AKIAIOSFODNN7EXAMPLE
+    Secret access key: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    ```
+
+6. To download the key pair, choose Download `.csv` file. Store the `.csv` file with keys in a secure location.
+
+for more details : https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html
+
+## MLFlow
+We will use mlflow for experiment tracking and model deploying.
+MLFlow official doc: https://mlflow.org/docs/latest/index.html

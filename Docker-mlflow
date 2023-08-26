@@ -1,0 +1,12 @@
+# Base image with Python and MLflow
+FROM python:3.8
+
+# Set environment variables
+ENV FILE_DIR=/mlflow
+ENV MLFLOW_VERSION=2.4.2
+ENV AWS_BUCKET="t-test-bucket-v1"
+ENV PORT=5000
+
+COPY run.sh /
+
+ENTRYPOINT ["/run.sh"]

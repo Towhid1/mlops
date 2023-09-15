@@ -222,3 +222,26 @@ for more details : https://docs.aws.amazon.com/powershell/latest/userguide/pstoo
 ## MLFlow
 We will use mlflow for experiment tracking and model deploying.
 MLFlow official doc: https://mlflow.org/docs/latest/index.html
+
+# 💁 Week 7
+
+1. Updated dag
+2. docker-compose YAML file updated
+3. AWS credential added inside YAML file
+4. RUN docker compose
+
+### Runing MLFlow using docker (without Airflow)
+1. To build the Docker image, navigate to the directory containing the Dockerfile and run the following command:
+    ```sh
+    docker build -t mlflow-server -f Docker-mlflow .
+    ```
+2. Once the image is built, you can run the MLflow server using the following command:
+   ```sh
+   docker run -p 5000:5000 -v mlflow:/mlflow mlflow-server
+
+   ```
+
+## Issue
+> MLflow stopped working after docker-compose up without any error. But work properly without Airflow. 😟
+
+**Solution:** Reason was there was no space in my C drive for running it. I reomved few big files. and restarted the docker. I worked with the issue. 

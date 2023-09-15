@@ -14,6 +14,13 @@ from scipy.stats import yeojohnson
 import sklearn.preprocessing as preproc
 import os
 
+# mlflow import
+import mlflow
+from mlflow import log_metric, log_param
+
+# MLflow stuff
+TRACKING_SERVER_HOST = 'mlflow'
+
 
 def data_pre(ti, path="/opt/airflow/data/raw_data/Clean_Dataset.csv"):
     """
@@ -122,6 +129,11 @@ def bsn_training(ti):
     Returns:
         None
     """
+    global TRACKING_SERVER_HOST
+    exmperiment_name = "Business_exp"
+    mlflow.set_tracking_uri(f"http://{TRACKING_SERVER_HOST}:5000")
+    mlflow.set_experiment(exmperiment_name)
+    model_name = "KNN"
     dir_dic = ti.xcom_pull(key='data_preparation_context')
     filename = dir_dic['business']
     feature = pd.read_csv(filename)
@@ -130,11 +142,20 @@ def bsn_training(ti):
         feature, target, random_state=1, test_size=0.3,
         shuffle=True)
 
-    model = KNeighborsRegressor()
-    trained_model = model.fit(x_train, y_train)
-    y_pred = trained_model.predict(x_test)
-    mae = mean_absolute_error(y_test, y_pred)
-
+    with mlflow.start_run():
+        model = KNeighborsRegressor()
+        trained_model = model.fit(x_train, y_train)
+        y_pred = trained_model.predict(x_test)
+        mae = mean_absolute_error(y_test, y_pred)
+        log_param("model_name", model_name)
+        log_param("one-hot-encoding", True)
+        log_param("outlier", True)
+        log_param("transformer", "yeojhonson")
+        log_metric("MAE", mae)
+        model_info = mlflow.sklearn.log_model(trained_model, model_name+exmperiment_name)
+        reg_model = mlflow.register_model(model_info.model_uri, model_name+exmperiment_name)
+    mlflow.end_run()
+    print(f"model reg : {reg_model}")
     print(f"business class mean_absolute_error: {mae}")
     return None
 
@@ -150,6 +171,12 @@ def eco_training(ti):
     Returns:
         None
     """
+    global TRACKING_SERVER_HOST
+    exmperiment_name = "Economy_exp"
+    mlflow.set_tracking_uri(f"http://{TRACKING_SERVER_HOST}:5000")
+    mlflow.set_experiment(exmperiment_name)
+    model_name = "KNN"
+
     dir_dic = ti.xcom_pull(key='data_preparation_context')
     filename = dir_dic['economy']
     feature = pd.read_csv(filename)
@@ -158,11 +185,21 @@ def eco_training(ti):
         feature, target, random_state=1, test_size=0.3,
         shuffle=True)
 
-    model = KNeighborsRegressor()
-    trained_model = model.fit(x_train, y_train)
-    y_pred = trained_model.predict(x_test)
-    mae = mean_absolute_error(y_test, y_pred)
+    with mlflow.start_run():
+        model = KNeighborsRegressor()
+        trained_model = model.fit(x_train, y_train)
+        y_pred = trained_model.predict(x_test)
+        mae = mean_absolute_error(y_test, y_pred)
+        log_param("model_name", model_name)
+        log_param("one-hot-encoding", True)
+        log_param("outlier", True)
+        log_param("transformer", "yeojhonson")
+        log_metric("MAE", mae)
+        model_info = mlflow.sklearn.log_model(trained_model, model_name+exmperiment_name)
+        reg_model = mlflow.register_model(model_info.model_uri, model_name+exmperiment_name)
 
+    mlflow.end_run()
+    print(f"model reg : {reg_model}")
     print(f"economy class mean_absolute_error: {mae}")
     return None
 

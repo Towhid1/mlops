@@ -18,6 +18,11 @@ import os
 import mlflow
 from mlflow import log_metric, log_param
 
+# evidently ai import for reporting/monitoring
+from evidently.metric_preset import DataDriftPreset
+from evidently.pipeline.column_mapping import ColumnMapping
+from evidently.report import Report
+
 # MLflow stuff
 TRACKING_SERVER_HOST = 'mlflow'
 
@@ -134,8 +139,8 @@ def bsn_training(ti):
     mlflow.set_tracking_uri(f"http://{TRACKING_SERVER_HOST}:5000")
     mlflow.set_experiment(exmperiment_name)
     model_name = "KNN"
-    dir_dic = ti.xcom_pull(key='data_preparation_context')
-    filename = dir_dic['business']
+    dir_dict = ti.xcom_pull(key='data_preparation_context')
+    filename = dir_dict['business']
     feature = pd.read_csv(filename)
     target = feature.pop("price")
     x_train, x_test, y_train, y_test = train_test_split(
@@ -177,8 +182,8 @@ def eco_training(ti):
     mlflow.set_experiment(exmperiment_name)
     model_name = "KNN"
 
-    dir_dic = ti.xcom_pull(key='data_preparation_context')
-    filename = dir_dic['economy']
+    dir_dict = ti.xcom_pull(key='data_preparation_context')
+    filename = dir_dict['economy']
     feature = pd.read_csv(filename)
     target = feature.pop("price")
     x_train, x_test, y_train, y_test = train_test_split(
@@ -204,6 +209,47 @@ def eco_training(ti):
     return None
 
 
+def data_drift(ti):
+    dir_dict = ti.xcom_pull(key='feature_dir')
+    dir_list = ['economy', 'business']
+    for key in dir_list:
+        filename = dir_dict[key]
+        print(filename)
+        data_frame = pd.read_csv(filename)
+        data_frame = data_frame.drop(columns=['class'])
+        data_frame_ref = data_frame.sample(n=500, replace=False)
+        data_frame_cur = data_frame.sample(n=500, replace=False)
+        print(data_frame.columns)
+
+        # Get categorical columns (object or categorical dtype)
+        categorical_cols = data_frame.select_dtypes(
+            include=['bool', 'object', 'category']
+        ).columns.tolist()
+
+        data_columns = ColumnMapping()
+        data_columns.categorical_features = categorical_cols
+        data_columns.numerical_features = ['stops', 'duration', 'days_left']
+        data_columns.target = 'price'
+
+        # data_columns.prediction = 'prediction'
+        dir_path = "/opt/airflow/data/reports/"
+        try:
+            os.makedirs(dir_path)
+        except:
+            pass
+        file_path = f"data_drift_{key}.html"
+        # roprting code
+        data_drift_report = Report(metrics=[DataDriftPreset()])
+        data_drift_report.run(
+            reference_data=data_frame_ref,
+            current_data=data_frame_cur,
+            column_mapping=data_columns
+        )
+        if not os.path.exists(dir_path):
+            os.mkdir(dir_path)
+        data_drift_report.save_html(os.path.join(dir_path, file_path))
+
+
 airline_dag = DAG(
     "Airline_ticket_price_prediction_DAG",
     # schedule_interval="@daily",
@@ -224,4 +270,8 @@ with airline_dag:
         task_id="bsn_training_task", python_callable=bsn_training, provide_context=True
     )
 
-    data_preparation_task >> [bsn_training_task, eco_training_task]
+    data_drift_task = PythonOperator(
+        task_id="data_drift_task_id", python_callable= None, provide_context=True
+    )
+
+    data_preparation_task>> data_drift_task >> [bsn_training_task, eco_training_task]

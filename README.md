@@ -245,3 +245,27 @@ MLFlow official doc: https://mlflow.org/docs/latest/index.html
 > MLflow stopped working after docker-compose up without any error. But work properly without Airflow. 😟
 
 **Solution:** Reason was there was no space in my C drive for running it. I reomved few big files. and restarted the docker. I worked with the issue. 
+
+
+# 💁 Week 8
+
+- We solved MLFlow docker issue
+- Then we discuss about DVC
+#### Commonly used DVC commands:
+- DVC install
+    ```sh
+    pip install dvc
+    ```
+- Init DVC
+  ```sh
+  dvc init
+  ```
+- data versioning
+  ```sh
+  dvc add data/
+  git add data.dvc
+    ```
+- model versioning
+  ```sh
+  dvc add models/
+  ```

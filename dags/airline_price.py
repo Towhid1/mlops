@@ -271,7 +271,7 @@ with airline_dag:
     )
 
     data_drift_task = PythonOperator(
-        task_id="data_drift_task_id", python_callable= None, provide_context=True
+        task_id="data_drift_task_id", python_callable=data_drift, provide_context=True
     )
 
-    data_preparation_task>> data_drift_task >> [bsn_training_task, eco_training_task]
+    data_preparation_task >> data_drift_task >> [bsn_training_task, eco_training_task]  # pylint: disable=w0104

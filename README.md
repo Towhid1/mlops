@@ -269,3 +269,10 @@ MLFlow official doc: https://mlflow.org/docs/latest/index.html
   ```sh
   dvc add models/
   ```
+
+# Week #9
+
+- Discussion about data drift
+- Evidently code added into pipeline (https://www.evidentlyai.com/)
+- requirement file updated
+

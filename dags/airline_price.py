@@ -210,15 +210,16 @@ def eco_training(ti):
 
 
 def data_drift(ti):
-    dir_dict = ti.xcom_pull(key='feature_dir')
+    dir_dict = ti.xcom_pull(key='data_preparation_context')
+    print(dir_dict)
     dir_list = ['economy', 'business']
     for key in dir_list:
         filename = dir_dict[key]
         print(filename)
         data_frame = pd.read_csv(filename)
         data_frame = data_frame.drop(columns=['class'])
-        data_frame_ref = data_frame.sample(n=500, replace=False)
-        data_frame_cur = data_frame.sample(n=500, replace=False)
+        data_frame_ref = data_frame.sample(n=500, replace=False).reset_index()
+        data_frame_cur = data_frame.sample(n=500, replace=False).reset_index()
         print(data_frame.columns)
 
         # Get categorical columns (object or categorical dtype)

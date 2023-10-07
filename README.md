@@ -276,3 +276,18 @@ MLFlow official doc: https://mlflow.org/docs/latest/index.html
 - Evidently code added into pipeline (https://www.evidentlyai.com/)
 - requirement file updated
 
+# Week #10
+
+- Model deploy with Flask & Docker
+- Prepare Docker-app to deploy flask app
+- Added flask app code and requirement
+- Test notebook added
+### Runing Flask API using Docker
+1. Build command:
+    ```sh
+    docker image build -t flaskapp -f .\Docker-app .
+    ```
+2. Run command:
+    ```sh
+    docker run -p 80:80 -t flaskapp
+    ```

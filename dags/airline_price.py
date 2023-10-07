@@ -59,7 +59,7 @@ def data_pre(ti, path="/opt/airflow/data/raw_data/Clean_Dataset.csv"):
     ]
     # one-hot encoding
     dummies = pd.get_dummies(data[dummies_variables])
-    data = pd.concat([data, dummies], axis=1)
+    data = pd.concat([data, dummies.astype(int)], axis=1)
     data = data.drop(
         [
             "flight",
@@ -220,7 +220,9 @@ def data_drift(ti):
         data_frame = data_frame.drop(columns=['class'])
         data_frame_ref = data_frame.sample(n=500, replace=False).reset_index()
         data_frame_cur = data_frame.sample(n=500, replace=False).reset_index()
-        print(data_frame.columns)
+        data_frame_ref = data_frame_ref.reset_index()
+        data_frame_cur = data_frame_cur.reset_index()
+        print(data_frame.info)
 
         # Get categorical columns (object or categorical dtype)
         categorical_cols = data_frame.select_dtypes(
